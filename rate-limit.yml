@@ -1,0 +1,14 @@
+config:
+  target: "https://corona-school-backend-dev.herokuapp.com"
+  phases:
+      - duration: 60
+        arrivalRate: 350
+        name: Peak load
+
+scenarios:
+  - name: "Landing Page"
+    flow:
+      - post:
+          url: "/apollo"
+          json:
+            query: 'mutation { isEmailAvailable(email: "test@example.org") }'

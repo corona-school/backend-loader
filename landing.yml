@@ -1,0 +1,17 @@
+config:
+  target: "https://corona-school-backend-dev.herokuapp.com"
+  phases:
+      - duration: 60
+        arrivalRate: 350
+        name: Peak load
+
+scenarios:
+  - name: "Landing Page"
+    flow:
+      - post:
+          url: "/apollo"
+          headers:
+            # this must be logged in before with 'loginToken(authtoken: "authtokenP1")
+            authorization: "Bearer f253b635-2302-4a38-9141-6adb0b47bdb4"
+          json:
+            query: "{  me {    firstname    lastname    email    pupil {      id      active      verifiedAt      state      schooltype      grade      openMatchRequestCount      matches {        id        student {          firstname          lastname        }      }      subcoursesJoined {        course {          name        }      }    }  }}"

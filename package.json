@@ -1,0 +1,13 @@
+{
+  "name": "backend-loader",
+  "version": "1.0.0",
+  "description": "Load Tests for the Backend",
+  "scripts": {
+    "run": "artillery run "
+  },
+  "author": "The Lern Fair Tech Team",
+  "license": "ISC",
+  "dependencies": {
+    "artillery": "^2.0.0-17"
+  }
+}

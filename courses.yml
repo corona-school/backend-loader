@@ -1,0 +1,15 @@
+config:
+  target: "https://corona-school-backend-dev.herokuapp.com"
+  phases:
+    - duration: 60
+      arrivalRate: 400
+      name: Peak load
+
+scenarios:
+  - name: "List public Courses"
+    flow:
+      - post:
+          url: "/apollo"
+          json:
+            query: "{  subcoursesPublic(take: 100) {    id    minGrade    maxGrade    maxParticipants    participantsCount    joinAfterStart    lectures {      start      duration    }    pupilsWaitingCount    course {      name      outline    }  }}"
+            variables: "{}"
