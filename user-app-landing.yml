@@ -1,0 +1,20 @@
+config:
+  target: "https://user-app-dev.herokuapp.com"
+  phases:
+      - duration: 60
+        arrivalRate: 15
+        name: Peak load
+  plugins:
+    expect: { outputFormat: "silent" }
+
+scenarios:
+  - name: "Open the landing page and load some further resources"
+    flow:
+      - get:
+          url: "/welcomoe"
+      - get:
+          url: "/config.js"
+      - get:
+          url: "/static/js/main.d55bb548.js"
+      - get:
+          url: "/static/css/main.62f38c5c.css"
