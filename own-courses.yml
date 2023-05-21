@@ -1,0 +1,31 @@
+config:
+  target: "http://localhost:5000"
+  phases:
+      - duration: 60
+        arrivalRate: 50
+        name: Peak load
+  plugins:
+    expect: { outputFormat: "silent" }
+    
+
+scenarios:
+  - name: "Fetch own subcourses"
+    flow:
+      - post:
+          url: "/apollo"
+          headers:
+            # Before running this load test, authenticate the user once with:
+            # mutation { 
+	          #  loginPassword(email: "test+dev+p1@lern-fair.de" password: "test")
+            # }
+            # and paste the session token here:
+            authorization: "Bearer ?"
+          json:
+            query: 'query { me { pupil { subcoursesJoined { otherParticipants { firstname } } } } }'
+            variables: '{}'
+          capture:
+            json: '$.data.loginPassword'
+            as: 'response'
+          expect:
+            - statusCode: 200
+            - contentType: json
